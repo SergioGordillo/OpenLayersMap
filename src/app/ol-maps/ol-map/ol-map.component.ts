@@ -31,7 +31,7 @@ export class OlMapComponent implements OnInit, AfterViewInit {
   @Input() width: string | number = DEFAULT_WIDTH;
   @Input() height: string | number = DEFAULT_HEIGHT;
 
-  private mapEl=HTMLElement;
+  private mapEl!:HTMLElement;
 
   map:Map=new Map({
     layers: [
@@ -71,7 +71,7 @@ export class OlMapComponent implements OnInit, AfterViewInit {
 
   private setSize():void {
     if (this.mapEl) {
-      const styles = this.mapEl.arguments;
+      const styles = this.mapEl.style;
       styles.height = coerceCssPixelValue(this.height) || DEFAULT_HEIGHT;
       styles.width = coerceCssPixelValue(this.width) || DEFAULT_WIDTH;
     }
@@ -89,3 +89,4 @@ function coerceCssPixelValue(value: any): string {
   }
 
   return cssUnitsPattern.test(value) ? value : `${value}px`;
+}
