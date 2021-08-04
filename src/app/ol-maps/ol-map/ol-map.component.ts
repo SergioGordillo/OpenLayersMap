@@ -5,7 +5,7 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
 import XYZ from 'ol/source/XYZ';
-import { OSM } from 'ol/source';
+import { OSM, Vector } from 'ol/source';
 import * as Proj from 'ol/proj';
 import {
   defaults as defaultControls,
@@ -51,6 +51,7 @@ export class OlMapComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.mapEl=this.elementRef.nativeElement.querySelector('#map');
     this.setSize();
+    this.setMarker;
   }
 
   ngAfterViewInit(): void {
@@ -75,6 +76,10 @@ export class OlMapComponent implements OnInit, AfterViewInit {
       styles.height = coerceCssPixelValue(this.height) || DEFAULT_HEIGHT;
       styles.width = coerceCssPixelValue(this.width) || DEFAULT_WIDTH;
     }
+  }
+
+  public setMarker(vector: VectorLayer<any>){
+    this.map.addLayer(vector);
   }
 
  
